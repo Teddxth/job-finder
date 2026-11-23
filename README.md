@@ -52,6 +52,19 @@ python skill/job-finder/scripts/apply_decisions.py job_tracker.xlsx decisions.js
 
 Kept offers get the status *To apply*; discarded ones move to the *Rejected* sheet.
 
+## Evaluation (v2)
+
+Version 1 scores offers with hand-set weights. Version 2 checks whether that score matches my own judgment: I rated 18 real offers from my internship search blind (model score hidden), then compared.
+
+| Metric | Value |
+|---|---|
+| Keep / discard agreement (threshold 50) | 94 % |
+| Recall on offers I would apply to | 100 % |
+| Rank correlation (Spearman) | 0.40 |
+| Mean absolute error | 20.5 pts |
+
+The score is a reliable filter but a weak ranking, and the exclusion rules dropped 6 offers I wanted. Details, data and script in [`eval/`](eval/).
+
 ## Design choices
 
 - **Explainable score**: every rejected offer gets a reason, so I can check the agent's judgement.
@@ -67,6 +80,7 @@ skill/job-finder/SKILL.md        instructions followed by the agent
 skill/job-finder/scripts/        scoring + Excel tracker
 swipe/index.html                card review interface (swipe)
 examples/                       profile template and demo offers
+eval/                           blind human ratings vs score (v2)
 ```
 
 ## Author
