@@ -9,6 +9,7 @@ I built this agent for my own end-of-studies internship search (AI engineer, 202
 3. Scores every offer with **weighted, explainable criteria** (skills, domain, location, level, remote, salary).
 4. Builds an **Excel tracker**: matches above the threshold, rejected offers *with the reason*, and a list of companies for spontaneous applications.
 5. Drafts a **tailored cover letter** for each match, without ever inventing experience.
+6. Lets you review the matches **like a dating app**: swipe right to keep, left to discard. Your choices update the Excel tracker.
 
 The scoring and the Excel generation are plain Python scripts, so the decision is reproducible: the LLM only fills the sub-scores, it cannot "push" an offer over the threshold.
 
@@ -39,6 +40,16 @@ Example output with the demo offers:
  0.0  rejected  Excluded sector (Finance)
 ```
 
+## Review the offers by swiping
+
+Open `swipe/index.html` in a browser (it works offline, no install). It shows a demo deck; click *Load offers_scored.json* to load your own offers. Swipe, use the arrow keys or the buttons, then *Export decisions* and run:
+
+```bash
+python skill/job-scout/scripts/apply_decisions.py job_tracker.xlsx decisions.json
+```
+
+Kept offers get the status *To apply*; discarded ones move to the *Rejected* sheet.
+
 ## Design choices
 
 - **Explainable score**: every rejected offer gets a reason, so I can check the agent's judgement.
@@ -52,6 +63,7 @@ Example output with the demo offers:
 ```
 skill/job-scout/SKILL.md        instructions followed by the agent
 skill/job-scout/scripts/        scoring + Excel tracker
+swipe/index.html                card review interface (swipe)
 examples/                       profile template and demo offers
 ```
 
