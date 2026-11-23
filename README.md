@@ -1,6 +1,7 @@
 # Job Finder: an AI agent that finds, scores and prepares job applications
 
 [![Try the demo](https://img.shields.io/badge/Try%20the%20demo-swipe%20interface-4f46e5?style=for-the-badge)](https://teddxth.github.io/job-finder/swipe/) [![Download the skill](https://img.shields.io/badge/Download-Claude%20skill%20(.zip)-059669?style=for-the-badge)](https://github.com/Teddxth/job-finder/releases/latest/download/job-finder-skill.zip)
+[![tests](https://github.com/Teddxth/job-finder/actions/workflows/tests.yml/badge.svg)](https://github.com/Teddxth/job-finder/actions/workflows/tests.yml)
 
 I built this agent for my own end-of-studies internship search (AI engineer, 2027). Instead of scrolling job boards every day, the agent does the repetitive part and I only review the best offers.
 
@@ -52,6 +53,19 @@ python skill/job-finder/scripts/apply_decisions.py job_tracker.xlsx decisions.js
 
 Kept offers get the status *To apply*; discarded ones move to the *Rejected* sheet.
 
+## Use it from any MCP client (v2)
+
+The tracker is also exposed as an **MCP server** ([`mcp_server/`](mcp_server/)), so Claude Code, Claude Desktop or any MCP client can drive it with tools instead of scripts: `add_offers`, `list_offers`, `set_decision`, `mark_applied`, `stats`. Claude does the reading and the judgment, the server does the deterministic part (scoring with the same code as the skill, storage, status).
+
+```bash
+pip install -r requirements.txt
+claude mcp add job-finder -e JOB_FINDER_PROFILE=$PWD/my_profile.yaml -- python $PWD/mcp_server/server.py
+```
+
+Then: *"Find AI internships in Lille, score them and add them to my tracker."*
+
+Tested end to end: `pytest` starts the server over stdio and drives it with the official MCP client, on every push (GitHub Actions).
+
 ## Evaluation (v2)
 
 Version 1 scores offers with hand-set weights. Version 2 checks whether that score matches my own judgment: I rated 18 real offers from my internship search blind (model score hidden), then compared.
@@ -81,6 +95,8 @@ skill/job-finder/scripts/        scoring + Excel tracker
 swipe/index.html                card review interface (swipe)
 examples/                       profile template and demo offers
 eval/                           blind human ratings vs score (v2)
+mcp_server/                     MCP server: the tracker as tools (v2)
+tests/                          pytest: score + MCP server end to end
 ```
 
 ## Author
