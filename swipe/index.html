@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Scout · Swipe</title>
+<style>
+  :root { --bg:#f4f5f7; --card:#fff; --ink:#16202c; --muted:#6b7684; --line:#e3e6ea;
+          --keep:#1f9d6a; --drop:#d64545; --accent:#1f3864; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg);
+         color:var(--ink); min-height:100vh; display:flex; flex-direction:column; align-items:center; }
+  header { width:100%; max-width:440px; padding:20px 16px 8px; display:flex; justify-content:space-between; align-items:center; }
+  header h1 { font-size:18px; margin:0; letter-spacing:.2px; }
+  header .count { font-size:13px; color:var(--muted); }
+  .bar { width:100%; max-width:408px; height:4px; background:var(--line); border-radius:2px; overflow:hidden; }
+  .bar i { display:block; height:100%; background:var(--accent); width:0; transition:width .25s; }
+  .deck { position:relative; width:100%; max-width:408px; height:520px; margin:18px 16px; }
+  .card { position:absolute; inset:0; background:var(--card); border:1px solid var(--line); border-radius:18px;
+          box-shadow:0 8px 24px rgba(20,30,50,.08); padding:26px 24px; display:flex; flex-direction:column;
+          touch-action:none; user-select:none; cursor:grab; will-change:transform; }
+  .card.behind { transform:scale(.96) translateY(10px); opacity:.7; pointer-events:none; }
+  .company { font-size:13px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted); margin:0 0 6px; }
+  .title { font-size:22px; line-height:1.25; margin:0 0 18px; font-weight:650; }
+  .score { display:flex; align-items:baseline; gap:6px; margin-bottom:18px; }
+  .score b { font-size:40px; font-weight:700; color:var(--accent); }
+  .score span { color:var(--muted); font-size:13px; }
+  .meta { display:grid; grid-template-columns:1fr 1fr; gap:10px 14px; font-size:14px; margin-bottom:18px; }
+  .meta div small { display:block; color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.8px; margin-bottom:2px; }
+  .why { font-size:13px; color:var(--muted); line-height:1.45; border-top:1px solid var(--line); padding-top:14px; flex:1; }
+  .card a { font-size:13px; color:var(--accent); text-decoration:none; font-weight:600; }
+  .stamp { position:absolute; top:24px; padding:6px 12px; border:3px solid; border-radius:8px; font-weight:800;
+           font-size:20px; letter-spacing:2px; opacity:0; transform:rotate(-12deg); }
+  .stamp.keep { right:22px; color:var(--keep); border-color:var(--keep); }
+  .stamp.drop { left:22px; color:var(--drop); border-color:var(--drop); transform:rotate(12deg); }
+  .actions { display:flex; gap:22px; margin:4px 0 12px; }
+  .actions button { width:62px; height:62px; border-radius:50%; border:1px solid var(--line); background:#fff;
+                    font-size:24px; cursor:pointer; box-shadow:0 4px 12px rgba(20,30,50,.08); }
+  .actions .drop { color:var(--drop); } .actions .keep { color:var(--keep); } .actions .undo { width:48px; height:48px; font-size:18px; align-self:center; color:var(--muted); }
+  .hint { font-size:12px; color:var(--muted); margin-bottom:8px; }
+  .done, .empty { text-align:center; padding:60px 20px; color:var(--muted); }
+  .done h2 { color:var(--ink); margin:0 0 6px; }
+  .tools { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:12px 0 30px; }
+  .tools label, .tools button { font:inherit; font-size:13px; padding:9px 14px; border-radius:10px; border:1px solid var(--line);
+                                background:#fff; cursor:pointer; color:var(--ink); }
+  .tools .primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  input[type=file] { display:none; }
+</style>
+</head>
+<body>
+<header><h1>Job Scout</h1><span class="count" id="count"></span></header>
+<div class="bar"><i id="progress"></i></div>
+<div class="deck" id="deck"></div>
+<div class="actions" id="actions">
+  <button class="drop" title="Discard (←)" onclick="decide('discard')">✕</button>
+  <button class="undo" title="Undo (Backspace)" onclick="undo()">↺</button>
+  <button class="keep" title="Keep (→)" onclick="decide('keep')">✓</button>
+</div>
+<div class="hint">Swipe right to keep, left to discard · keyboard ← → · Backspace to undo</div>
+<div class="tools">
+  <label>Load offers_scored.json<input type="file" id="file" accept=".json"></label>
+  <button class="primary" onclick="exportDecisions()">Export decisions</button>
+</div>
+
+<div id="exportBox" hidden style="width:100%;max-width:408px;margin:0 16px 30px">
+  <p class="hint">If the download is blocked, copy this into <code>decisions.json</code>:</p>
+  <textarea readonly style="width:100%;height:140px;font:12px monospace;border:1px solid var(--line);border-radius:10px;padding:10px"></textarea>
+  <div class="tools"><button id="copyBtn" onclick="copyExport()">Copy</button></div>
+</div>
+<script>
+const DEMO = [
+  {title:"ML Engineer intern - computer vision", company:"ExampleVision", location:"Lille", remote:"2 days/week", sector:"Industry 4.0",
+   contract:"Internship 6 months", start:"2027-09", salary_junior:"40-44", score:88.2, decision:"match",
+   justification:"88% (threshold 50%). Weakest criteria: remote=60%, salary=80%", url:"https://example.com/offer/1"},
+  {title:"NLP Engineer intern - LLM agents", company:"Northwind AI", location:"Paris", remote:"hybrid", sector:"Software",
+   contract:"Internship 6 months", start:"2027-09", salary_junior:"42-46", score:79.5, decision:"match",
+   justification:"80% (threshold 50%). Weakest criteria: location=70%, remote=60%", url:"https://example.com/offer/4"},
+  {title:"Deep learning intern - medical imaging", company:"HelioMed", location:"Basel", remote:"no", sector:"Healthcare",
+   contract:"Internship 6 months", start:"2027-09", salary_junior:"55-65 (CHF)", score:71.0, decision:"match",
+   justification:"71% (threshold 50%). Weakest criteria: remote=0%, location=70%", url:"https://example.com/offer/5"}
+];
+const KEY = "jobscout.decisions";
+let offers = [], idx = 0, history = [], decisions = {};
+try { decisions = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { decisions = {}; }
+
+const id = o => (o.company + "|" + o.title).toLowerCase();
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function load(list) {
+  offers = list.filter(o => o.decision === "match").sort((a, b) => b.score - a.score);
+  idx = offers.findIndex(o => !decisions[id(o)]); if (idx < 0) idx = offers.length;
+  history = []; render();
+}
+
+function cardHTML(o, behind) {
+  return `<div class="card${behind ? " behind" : ""}">
+    <div class="stamp keep">KEEP</div><div class="stamp drop">NOPE</div>
+    <p class="company">${esc(o.company)}</p>
+    <h2 class="title">${esc(o.title)}</h2>
+    <div class="score"><b>${Math.round(o.score)}%</b><span>match</span></div>
+    <div class="meta">
+      <div><small>Location</small>${esc(o.location)}</div>
+      <div><small>Remote</small>${esc(o.remote || "-")}</div>
+      <div><small>Contract</small>${esc(o.contract || "-")}</div>
+      <div><small>Start</small>${esc(o.start || "-")}</div>
+      <div><small>Sector</small>${esc(o.sector || "-")}</div>
+      <div><small>Junior salary</small>${o.salary_junior ? esc(o.salary_junior) + " k€" : "-"}</div>
+    </div>
+    <div class="why">${esc(o.justification)}</div>
+    ${o.url ? `<a href="${esc(o.url)}" target="_blank" rel="noopener">View the offer →</a>` : ""}
+  </div>`;
+}
+
+function render() {
+  const deck = document.getElementById("deck");
+  const kept = Object.values(decisions).filter(d => d === "keep").length;
+  document.getElementById("count").textContent = offers.length ? `${Math.min(idx + 1, offers.length)} / ${offers.length} · ${kept} kept` : "";
+  document.getElementById("progress").style.width = offers.length ? (idx / offers.length * 100) + "%" : "0";
+  if (!offers.length) { deck.innerHTML = `<div class="empty">No offer above the threshold.</div>`; return; }
+  if (idx >= offers.length) {
+    deck.innerHTML = `<div class="done"><h2>All offers reviewed</h2>${kept} kept. Export your decisions to update the Excel tracker.</div>`;
+    return;
+  }
+  deck.innerHTML = (offers[idx + 1] ? cardHTML(offers[idx + 1], true) : "") + cardHTML(offers[idx], false);
+  drag(deck.lastElementChild);
+}
+
+function drag(card) {
+  let x0 = 0, dx = 0, down = false;
+  const keep = card.querySelector(".stamp.keep"), drop = card.querySelector(".stamp.drop");
+  card.addEventListener("pointerdown", e => { if (e.target.tagName === "A") return; down = true; x0 = e.clientX; card.setPointerCapture(e.pointerId); card.style.transition = "none"; });
+  card.addEventListener("pointermove", e => {
+    if (!down) return; dx = e.clientX - x0;
+    card.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`;
+    keep.style.opacity = Math.max(0, dx / 120); drop.style.opacity = Math.max(0, -dx / 120);
+  });
+  const end = () => {
+    if (!down) return; down = false; card.style.transition = "transform .25s";
+    if (Math.abs(dx) > 110) decide(dx > 0 ? "keep" : "discard", card);
+    else { card.style.transform = ""; keep.style.opacity = drop.style.opacity = 0; }
+    dx = 0;
+  };
+  card.addEventListener("pointerup", end); card.addEventListener("pointercancel", end);
+}
+
+function decide(choice, card) {
+  if (idx >= offers.length) return;
+  card = card || document.getElementById("deck").lastElementChild;
+  card.style.transition = "transform .3s, opacity .3s";
+  card.style.transform = `translateX(${choice === "keep" ? 600 : -600}px) rotate(${choice === "keep" ? 25 : -25}deg)`;
+  card.style.opacity = 0;
+  const o = offers[idx]; decisions[id(o)] = choice; history.push(idx); idx++;
+  try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {}
+  setTimeout(render, 280);
+}
+
+function undo() {
+  if (!history.length) return;
+  idx = history.pop(); delete decisions[id(offers[idx])];
+  try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {}
+  render();
+}
+
+function exportDecisions() {
+  const out = offers.map(o => ({company:o.company, title:o.title, url:o.url, decision:decisions[id(o)] || "pending"}));
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], {type:"application/json"}));
+  a.download = "decisions.json"; a.click();
+  const box = document.getElementById("exportBox");
+  box.querySelector("textarea").value = JSON.stringify(out, null, 2); box.hidden = false;
+}
+function copyExport() {
+  const t = document.querySelector("#exportBox textarea");
+  navigator.clipboard.writeText(t.value).then(() => document.getElementById("copyBtn").textContent = "Copied", () => t.select());
+}
+
+document.getElementById("file").addEventListener("change", e => {
+  const f = e.target.files[0]; if (!f) return;
+  f.text().then(t => load(JSON.parse(t))).catch(() => alert("Invalid JSON file"));
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") decide("keep");
+  else if (e.key === "ArrowLeft") decide("discard");
+  else if (e.key === "Backspace") undo();
+});
+load(DEMO);
+</script>
+</body>
+</html>
