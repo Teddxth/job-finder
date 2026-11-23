@@ -1,5 +1,7 @@
 # Job Finder: an AI agent that finds, scores and prepares job applications
 
+[![Try the demo](https://img.shields.io/badge/Try%20the%20demo-swipe%20interface-4f46e5?style=for-the-badge)](https://teddxth.github.io/job-finder/swipe/) [![Download the skill](https://img.shields.io/badge/Download-Claude%20skill%20(.zip)-059669?style=for-the-badge)](https://github.com/Teddxth/job-finder/releases/latest/download/job-finder-skill.zip)
+
 I built this agent for my own end-of-studies internship search (AI engineer, 2027). Instead of scrolling job boards every day, the agent does the repetitive part and I only review the best offers.
 
 **What it does**
@@ -17,8 +19,8 @@ The scoring and the Excel generation are plain Python scripts, so the decision i
 
 This repository contains a ready-to-use **skill** for Claude.
 
-1. Download the `skill/job-finder` folder and zip it.
-2. In Claude, open *Settings → Capabilities → Skills* and upload the zip.
+1. [Download `job-finder-skill.zip`](https://github.com/Teddxth/job-finder/releases/latest/download/job-finder-skill.zip) (no need to unzip it).
+2. In Claude, open *Settings → Capabilities → Skills* and upload the zip. Skills require a Claude plan with code execution enabled.
 3. Start a chat: *"Use job-finder to find AI internships in Lille starting in September 2027"* and attach your CV.
 
 Claude asks for the missing preferences on the first run, then does the rest.
@@ -42,7 +44,7 @@ Example output with the demo offers:
 
 ## Review the offers by swiping
 
-Open `swipe/index.html` in a browser (it works offline, no install). It shows a demo deck; click *Load offers_scored.json* to load your own offers. Swipe, use the arrow keys or the buttons, then *Export decisions* and run:
+**[Open the live demo](https://teddxth.github.io/job-finder/swipe/)**, or open `swipe/index.html` locally (it works offline, no install). It shows a demo deck; click *Load offers_scored.json* to load your own offers. Swipe, use the arrow keys or the buttons, then *Export decisions* and run:
 
 ```bash
 python skill/job-finder/scripts/apply_decisions.py job_tracker.xlsx decisions.json
