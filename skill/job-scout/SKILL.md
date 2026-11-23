@@ -61,7 +61,15 @@ For every offer above the threshold:
 
 Save letters as `letters/<company>_<title>.docx` and write the file name in the tracker.
 
-## 7. Report
+## 7. Review by swiping
+
+Tell the user they can review the matches in `swipe/index.html` of the repository (load `offers_scored.json`, swipe right to keep, left to discard, export `decisions.json`). Then apply the choices:
+
+```bash
+python scripts/apply_decisions.py job_tracker.xlsx decisions.json
+```
+
+## 8. Report
 
 End with a short summary: number of offers found, number of matches, top 3 offers with their score, and any site that blocked you.
 Do not send any application yourself: the user reviews and sends.
