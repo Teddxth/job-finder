@@ -1,0 +1,22 @@
+# Copy this file and fill it with your own information.
+name: Jane Doe
+target_titles: [AI engineer, Machine learning engineer, Deep learning engineer, AI agents engineer]
+contract: end-of-studies internship (6 months), with a possible hire afterwards
+start: 2027-09
+locations:
+  preferred: [Lille]
+  accepted: [Paris, Switzerland < 100 km from the French border]
+  remote_bonus: true
+excluded_sectors: [defense, weapons, finance]
+salary_expectation_k: [40, 45]
+threshold: 50          # % - offers below go to the "Rejected" sheet with a justification
+weights:               # relative importance of each criterion (any scale)
+  skills: 35           # overlap between required skills and the CV
+  domain: 25           # AI focus of the role
+  location: 15
+  level: 10            # internship / junior compatible
+  remote: 5
+  salary: 10
+cv_file: cv.pdf
+rules:
+  - Never invent experience: only reorder and develop what is in the CV.

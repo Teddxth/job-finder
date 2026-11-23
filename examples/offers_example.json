@@ -1,0 +1,12 @@
+[
+  {"title": "ML Engineer intern - computer vision", "company": "ExampleVision", "location": "Lille", "remote": "2 days/week",
+   "sector": "Industry 4.0", "contract": "Internship 6 months", "start": "2027-09", "salary_junior": "40-44", "salary_growth": "50-58",
+   "url": "https://example.com/offer/1",
+   "subscores": {"skills": 0.85, "domain": 0.9, "location": 1.0, "level": 1.0, "remote": 0.6, "salary": 0.8}},
+  {"title": "Quant AI intern", "company": "SomeBank", "location": "Paris", "remote": "no",
+   "sector": "Finance", "contract": "Internship", "start": "2027-03", "url": "https://example.com/offer/2",
+   "subscores": {"skills": 0.7, "domain": 0.8, "location": 0.7, "level": 1.0, "remote": 0, "salary": 1.0}},
+  {"title": "Data analyst intern", "company": "RetailCo", "location": "Lyon", "remote": "full",
+   "sector": "Retail", "contract": "Internship", "start": "2027-09", "url": "https://example.com/offer/3",
+   "subscores": {"skills": 0.4, "domain": 0.2, "location": 0.2, "level": 1.0, "remote": 1.0, "salary": 0.4}}
+]
