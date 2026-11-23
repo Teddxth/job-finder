@@ -1,4 +1,4 @@
-# Job Scout: an AI agent that finds, scores and prepares job applications
+# Job Finder: an AI agent that finds, scores and prepares job applications
 
 I built this agent for my own end-of-studies internship search (AI engineer, 2027). Instead of scrolling job boards every day, the agent does the repetitive part and I only review the best offers.
 
@@ -17,9 +17,9 @@ The scoring and the Excel generation are plain Python scripts, so the decision i
 
 This repository contains a ready-to-use **skill** for Claude.
 
-1. Download the `skill/job-scout` folder and zip it.
+1. Download the `skill/job-finder` folder and zip it.
 2. In Claude, open *Settings → Capabilities → Skills* and upload the zip.
-3. Start a chat: *"Use job-scout to find AI internships in Lille starting in September 2027"* and attach your CV.
+3. Start a chat: *"Use job-finder to find AI internships in Lille starting in September 2027"* and attach your CV.
 
 Claude asks for the missing preferences on the first run, then does the rest.
 
@@ -28,8 +28,8 @@ Claude asks for the missing preferences on the first run, then does the rest.
 ```bash
 pip install openpyxl pyyaml
 cp examples/profile.yaml my_profile.yaml        # edit it
-python skill/job-scout/scripts/score.py examples/offers_example.json my_profile.yaml scored.json
-python skill/job-scout/scripts/build_excel.py scored.json job_tracker.xlsx
+python skill/job-finder/scripts/score.py examples/offers_example.json my_profile.yaml scored.json
+python skill/job-finder/scripts/build_excel.py scored.json job_tracker.xlsx
 ```
 
 Example output with the demo offers:
@@ -45,7 +45,7 @@ Example output with the demo offers:
 Open `swipe/index.html` in a browser (it works offline, no install). It shows a demo deck; click *Load offers_scored.json* to load your own offers. Swipe, use the arrow keys or the buttons, then *Export decisions* and run:
 
 ```bash
-python skill/job-scout/scripts/apply_decisions.py job_tracker.xlsx decisions.json
+python skill/job-finder/scripts/apply_decisions.py job_tracker.xlsx decisions.json
 ```
 
 Kept offers get the status *To apply*; discarded ones move to the *Rejected* sheet.
@@ -61,8 +61,8 @@ Kept offers get the status *To apply*; discarded ones move to the *Rejected* she
 ## Repository
 
 ```
-skill/job-scout/SKILL.md        instructions followed by the agent
-skill/job-scout/scripts/        scoring + Excel tracker
+skill/job-finder/SKILL.md        instructions followed by the agent
+skill/job-finder/scripts/        scoring + Excel tracker
 swipe/index.html                card review interface (swipe)
 examples/                       profile template and demo offers
 ```
