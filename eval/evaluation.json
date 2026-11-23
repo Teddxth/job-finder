@@ -1,0 +1,320 @@
+{
+  "version": 2,
+  "scale": "human 1-5 mapped to 0/25/50/75/100; model = weighted score 0-100; threshold 50",
+  "weights": {
+    "IA / deep learning / agents": 0.3,
+    "Robotique": 0.025,
+    "Compétences (CV)": 0.2,
+    "Localisation & télétravail": 0.175,
+    "Type de contrat & dates": 0.1,
+    "Salaire": 0.2
+  },
+  "items": [
+    {
+      "id": "k2",
+      "company": "Flyability",
+      "title": "Robotics AI Intern – détection visuelle (pretrained & few-shot learning)",
+      "human": 75,
+      "would_apply": true,
+      "model": 78.6,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 90,
+        "Robotique": 90,
+        "Compétences (CV)": 90,
+        "Localisation & télétravail": 65,
+        "Type de contrat & dates": 40,
+        "Salaire": 80
+      }
+    },
+    {
+      "id": "k4",
+      "company": "Dassault Systèmes (SIMULIA)",
+      "title": "Stage Ingénieur Deep Learning – Machines électriques",
+      "human": 50,
+      "would_apply": true,
+      "model": 77.1,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 90,
+        "Robotique": 15,
+        "Compétences (CV)": 80,
+        "Localisation & télétravail": 90,
+        "Type de contrat & dates": 60,
+        "Salaire": 60
+      }
+    },
+    {
+      "id": "k19",
+      "company": "Capgemini",
+      "title": "AI Engineer / Data & Agentic Systems – Stage",
+      "human": 100,
+      "would_apply": true,
+      "model": 72.2,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 80,
+        "Robotique": 0,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 90,
+        "Type de contrat & dates": 65,
+        "Salaire": 60
+      }
+    },
+    {
+      "id": "k23",
+      "company": "Iliad – Free (équipe dataX)",
+      "title": "Stage – AI Engineer LLM (agents, RAG, entraînement de LLM sur GPU H100)",
+      "human": 50,
+      "would_apply": true,
+      "model": 71.2,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 90,
+        "Robotique": 0,
+        "Compétences (CV)": 80,
+        "Localisation & télétravail": 70,
+        "Type de contrat & dates": 60,
+        "Salaire": 50
+      }
+    },
+    {
+      "id": "k45",
+      "company": "Safran Tech (groupe Safran)",
+      "title": "STAGE – IA agentique pour l'exploitation des données de banc d'essais moteur aéronautique",
+      "human": 50,
+      "would_apply": true,
+      "model": 68.1,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 90,
+        "Robotique": 5,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 60,
+        "Type de contrat & dates": 55,
+        "Salaire": 55
+      }
+    },
+    {
+      "id": "k49",
+      "company": "HeadMind Partners",
+      "title": "STAGE – Consultant AI Engineer (GenAI, vision, multimodal, agentique ; objectif CDI)",
+      "human": 50,
+      "would_apply": true,
+      "model": 67.9,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 80,
+        "Robotique": 0,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 65,
+        "Type de contrat & dates": 75,
+        "Salaire": 55
+      }
+    },
+    {
+      "id": "k52",
+      "company": "MDPI",
+      "title": "Computer Vision Intern (100 %)",
+      "human": 100,
+      "would_apply": true,
+      "model": 67.6,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 85,
+        "Robotique": 15,
+        "Compétences (CV)": 75,
+        "Localisation & télétravail": 50,
+        "Type de contrat & dates": 50,
+        "Salaire": 65
+      }
+    },
+    {
+      "id": "k58",
+      "company": "ECM (groupe CRIT)",
+      "title": "Stage PFE – Développement d'agents IA et de workflows intelligents (processus internes)",
+      "human": 75,
+      "would_apply": true,
+      "model": 66.8,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 85,
+        "Robotique": 0,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 70,
+        "Type de contrat & dates": 60,
+        "Salaire": 45
+      }
+    },
+    {
+      "id": "k69",
+      "company": "Siemens",
+      "title": "Stage – Développement d'agents et chatbots pour l'optimisation des processus supports",
+      "human": 50,
+      "would_apply": true,
+      "model": 64.2,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 75,
+        "Robotique": 0,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 70,
+        "Type de contrat & dates": 55,
+        "Salaire": 50
+      }
+    },
+    {
+      "id": "k85",
+      "company": "SFR",
+      "title": "Stage – IA & Datascience",
+      "human": 50,
+      "would_apply": true,
+      "model": 61.6,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 70,
+        "Robotique": 5,
+        "Compétences (CV)": 65,
+        "Localisation & télétravail": 60,
+        "Type de contrat & dates": 70,
+        "Salaire": 50
+      }
+    },
+    {
+      "id": "k99",
+      "company": "Pernod Ricard",
+      "title": "Machine Learning Engineer Intern (MLOps) – janvier 2027",
+      "human": 50,
+      "would_apply": true,
+      "model": 56.2,
+      "kept_by_filters": true,
+      "sub": {
+        "IA / deep learning / agents": 55,
+        "Robotique": 0,
+        "Compétences (CV)": 55,
+        "Localisation & télétravail": 70,
+        "Type de contrat & dates": 55,
+        "Salaire": 55
+      }
+    },
+    {
+      "id": "r7",
+      "company": "Tether Operations",
+      "title": "Research Engineer Intern (Multimodal LLM)",
+      "human": 100,
+      "would_apply": true,
+      "model": 70.5,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 75,
+        "Robotique": 0,
+        "Compétences (CV)": 65,
+        "Localisation & télétravail": 80,
+        "Type de contrat & dates": 70,
+        "Salaire": 70
+      }
+    },
+    {
+      "id": "r10",
+      "company": "AdvanThink (éditeur ISoft / Amadea)",
+      "title": "Stage de fin d'études – IA générative & Agents (serveurs MCP, agents IA)",
+      "human": 50,
+      "would_apply": true,
+      "model": 70,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 85,
+        "Robotique": 0,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 60,
+        "Type de contrat & dates": 90,
+        "Salaire": 55
+      }
+    },
+    {
+      "id": "r12",
+      "company": "Crédit Agricole Personal Finance & Mobility",
+      "title": "Stage 2027 AI Engineer (équipe Quantitative Risk)",
+      "human": 50,
+      "would_apply": true,
+      "model": 69.2,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 70,
+        "Robotique": 0,
+        "Compétences (CV)": 60,
+        "Localisation & télétravail": 90,
+        "Type de contrat & dates": 85,
+        "Salaire": 60
+      }
+    },
+    {
+      "id": "r18",
+      "company": "Airbus Defense and Space",
+      "title": "Stage 2027 – IA pour l’industrialisation de pales d’hélicoptère",
+      "human": 50,
+      "would_apply": true,
+      "model": 66,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 75,
+        "Robotique": 20,
+        "Compétences (CV)": 70,
+        "Localisation & télétravail": 60,
+        "Type de contrat & dates": 75,
+        "Salaire": 55
+      }
+    },
+    {
+      "id": "r35",
+      "company": "CSEM (Centre Suisse d'Electronique et de Microtechnique)",
+      "title": "Internship in Agentic AI",
+      "human": 100,
+      "would_apply": true,
+      "model": 54.5,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 90,
+        "Robotique": 5,
+        "Compétences (CV)": 20,
+        "Localisation & télétravail": 25,
+        "Type de contrat & dates": 50,
+        "Salaire": 70
+      }
+    },
+    {
+      "id": "r42",
+      "company": "Decathlon United",
+      "title": "Stage Data Analyst / Data Engineer (Automatisation)",
+      "human": 25,
+      "would_apply": true,
+      "model": 50.8,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 25,
+        "Robotique": 0,
+        "Compétences (CV)": 40,
+        "Localisation & télétravail": 90,
+        "Type de contrat & dates": 75,
+        "Salaire": 60
+      }
+    },
+    {
+      "id": "r43",
+      "company": "Oney",
+      "title": "Stage Data Analyst F/H",
+      "human": 25,
+      "would_apply": false,
+      "model": 49.2,
+      "kept_by_filters": false,
+      "sub": {
+        "IA / deep learning / agents": 25,
+        "Robotique": 0,
+        "Compétences (CV)": 40,
+        "Localisation & télétravail": 90,
+        "Type de contrat & dates": 60,
+        "Salaire": 60
+      }
+    }
+  ]
+}
