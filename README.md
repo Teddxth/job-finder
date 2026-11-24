@@ -101,6 +101,6 @@ tests/                          pytest: score + MCP server end to end
 
 ## Author
 
-**Teddy Thamrong**, Arts et Métiers engineering student (robotics & AI). Looking for an AI engineering internship from September 2027.
+**Teddy Thamrong**, élève-ingénieur à l'École nationale supérieure d'Arts et Métiers (ENSAM), expertise IRIS (machine learning et robotique) · recherche un stage de fin d'études en IA à partir de février ou de septembre 2027.
 
 License: MIT
