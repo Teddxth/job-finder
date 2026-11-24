@@ -11,7 +11,7 @@ I built this agent for my own end-of-studies internship search (AI engineer, 202
 2. Searches the job boards and company career pages.
 3. Scores every offer with **weighted, explainable criteria** (skills, domain, location, level, remote, salary).
 4. Builds an **Excel tracker**: matches above the threshold, rejected offers *with the reason*, and a list of companies for spontaneous applications.
-5. Drafts a **tailored cover letter** for each match, without ever inventing experience.
+5. Drafts a **tailored cover letter** for each match, without ever inventing experience, then runs a built-in **Humanizer** style review so the letter reads clear and natural, in the candidate's own voice.
 6. Lets you review the matches **like a dating app**: swipe right to keep, left to discard. Your choices update the Excel tracker.
 
 The scoring and the Excel generation are plain Python scripts, so the decision is reproducible: the LLM only fills the sub-scores, it cannot "push" an offer over the threshold.
@@ -85,6 +85,7 @@ The score is a reliable filter but a weak ranking, and the exclusion rules dropp
 - **Ethics filter**: excluded sectors are removed before scoring.
 - **Human in the loop**: the agent never sends an application. It stops and asks me when a captcha or a login blocks it.
 - **Honesty rule**: letters and CV variants only reorder and develop real experience.
+- **Humanizer**: every letter goes through a style review (`skill/job-finder/references/humanizer.md`) that removes generic phrasing, filler words and stock formulas while keeping every fact. The candidate still rereads and edits before sending.
 - **Daily routine**: in my own setup, a scheduled task runs the search every morning and fills a Google Sheet, so I find new offers ready to review.
 
 ## Repository
@@ -92,6 +93,7 @@ The score is a reliable filter but a weak ranking, and the exclusion rules dropp
 ```
 skill/job-finder/SKILL.md        instructions followed by the agent
 skill/job-finder/scripts/        scoring + Excel tracker
+skill/job-finder/references/     Humanizer: style review of the letters
 swipe/index.html                card review interface (swipe)
 examples/                       profile template and demo offers
 eval/                           blind human ratings vs score (v2)
