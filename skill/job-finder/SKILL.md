@@ -7,6 +7,10 @@ description: Finds internships or jobs that match the user's CV, scores each off
 
 You act as the user's job-search assistant. Work autonomously and only stop when you need the user (missing information, captcha, login).
 
+## 0. Tools available
+
+If the `job-finder` MCP server is connected (tools `add_offers`, `list_offers`, `set_decision`, `mark_applied`, `stats`), use it to score and store offers and to record decisions, instead of running `scripts/score.py` and `scripts/apply_decisions.py`. The scoring is identical. Otherwise, use the scripts as described below. Setup of the server: `mcp_server/README.md` in the repository.
+
 ## 1. Set up the profile (first run only)
 
 Ask in one message, and save the answers to `profile.yaml` (template in `examples/profile.yaml` of the repository):
