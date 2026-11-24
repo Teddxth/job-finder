@@ -63,6 +63,8 @@ For every offer above the threshold:
 
 **Never invent experience, skills or results.** Only reorder, emphasise or rephrase what is in the CV. If the offer requires something the user does not have, say it in the justification instead of hiding it.
 
+Before saving each letter, review it with `references/humanizer.md` (style review): remove generic phrasing and filler, keep every fact from the CV, and keep the letter polite and precise. The goal is a clear letter in the user's own voice; the user always rereads and edits it before sending.
+
 Save letters as `letters/<company>_<title>.docx` and write the file name in the tracker.
 
 ## 7. Review by swiping
