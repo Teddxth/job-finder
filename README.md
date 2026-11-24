@@ -21,7 +21,7 @@ The scoring and the Excel generation are plain Python scripts, so the decision i
 This repository contains a ready-to-use **skill** for Claude.
 
 1. [Download `job-finder-skill.zip`](https://github.com/Teddxth/job-finder/releases/latest/download/job-finder-skill.zip) (no need to unzip it).
-2. In Claude, open *Settings → Capabilities → Skills* and upload the zip. Skills require a Claude plan with code execution enabled.
+2. In Claude, open *Plug-ins → Add → Import a plug-in* and upload the zip. Skills require a Claude plan with code execution enabled.
 3. Start a chat: *"Use job-finder to find AI internships in Lille starting in September 2027"* and attach your CV.
 
 Claude asks for the missing preferences on the first run, then does the rest.
